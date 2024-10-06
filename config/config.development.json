@@ -1,0 +1,49 @@
+{
+  "url": "http://localhost:2368/",
+  "server": {
+    "port": 2368,
+    "host": "::"
+  },
+  "database": {
+    "client": "sqlite3",
+    "connection": {
+      "filename": "/var/lib/ghost/content/data/ghost.db"
+    }
+  },
+  "mail": {
+    "transport": "SMTP",
+    "options": {
+      "host": "sv115.wadax-sv.jp",
+      "port": 465,
+      "secure": true,
+      "from": "aidabo@thinksystem-jp.com",
+      "auth": {
+        "user": "aidabo@thinksystem-jp.com",
+        "pass": "1qnJ!317t"
+      }
+    }    
+  },
+  "logging": {
+    "level": "trace",
+    "transports": [
+      "file",
+      "stdout"
+    ]
+  },
+  "process": "systemd",
+  "paths": {
+    "contentPath": "/var/lib/ghost/content"
+  },  
+  "storage": {
+    "active": "s3",
+    "media":  "s3",
+    "files":  "s3",
+    "images": "s3",
+    "s3": {
+      "accessKeyId": "",
+      "secretAccessKey": "",
+      "bucket": "",
+      "region": "ap-northeast-1"
+    }
+  }
+}
