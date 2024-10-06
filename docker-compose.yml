@@ -1,0 +1,64 @@
+services:  
+  ghost:  
+    image: ghost:5.89.3-alpine  
+    restart: unless-stopped  
+    environment:  
+      - NODE_ENV=development  
+      - url=http://localhost:2368  
+      # Development SQLite configuration  
+      - database__client=sqlite3
+      - database__connection__filename=/var/lib/ghost/content/data/ghost.db       
+      # Production MYSQL configuration
+      # - database__client=mysql  
+      # - database__connection__host=db  
+      # - database__connection__user=root  
+      # - database__connection__password=ghost
+      # - database__connection__database=ghost  
+    ports:  
+      - "2368:2368"
+      - "465:465"
+      - "25:25"
+      - "993:993"
+    volumes:  
+      - ./content:/var/lib/ghost/content
+      - type: bind
+        source: ./config/config.development.json
+        target: /var/lib/ghost/config.production.json  
+#     depends_on:  
+#       - db  
+  
+#   db:  
+#     image: mysql:5.7  
+#     restart: unless-stopped  
+#     environment:  
+#       MYSQL_ROOT_PASSWORD: yghost
+#       MYSQL_DATABASE: ghost  
+#     volumes:  
+#       - db-data:/var/lib/mysql  
+  
+# volumes:  
+#   db-data:
+
+  nginx:
+    container_name: nginx
+    build: 
+      dockerfile: Dockerfile 
+      context: ./nginx
+    ports:
+      - "8088:80"
+    environment:
+      - TZ=Asia/Tokyo      
+    volumes:
+      # anything in html directory is hosted via nginx
+      - "./nginx/html:/usr/share/nginx/html"
+    restart: always
+
+  json-server:
+    container_name: json-server
+    build:
+      context: ./json-server
+      dockerfile: Dockerfile
+    volumes:
+      - ./json-server/data:/data
+    ports:
+      - "3000:3000"

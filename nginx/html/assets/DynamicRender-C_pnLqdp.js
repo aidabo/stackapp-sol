@@ -1,0 +1,1 @@
+import{d as n,h as o}from"./index-wkNrGTcD.js";import{u as m}from"./GridStackItem-DslgcUYb.js";import"./v4-DvF23Exx.js";const a=n({render(){const{gsGetItemCompnent:e}=m(),t=e("example");return o(t,{itemId:"2389434",componentName:"test000"})}});export{a as default};

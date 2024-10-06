@@ -1,0 +1,1 @@
+import{d as n,R as o}from"./index-B4CC65jv.js";import{u as m}from"./base64-BRswEN9g.js";import"./PageLayoutStore-BBWcVjuV.js";const a=n({render(){const{gsGetItemCompnent:e}=m(),t=e("example");return o(t,{itemId:"2389434",componentName:"test000"})}});export{a as default};
